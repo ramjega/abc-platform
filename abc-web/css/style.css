@@ -208,19 +208,24 @@
 
 
 /*** Service ***/
+
+.service-container{
+    margin-top: 10px;
+}
+
 .service-item {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 300px; /* Fixed height for the container */
+    height: 300px;
     border-radius: 10px;
     overflow: hidden;
-    border: 1px solid #ddd; /* Optional border */
+    border: 1px solid #ddd;
 }
 
 .service-item img {
-    max-width: 150px; /* Increased image size */
+    max-width: 150px;
     height: auto;
     object-fit: cover;
 }

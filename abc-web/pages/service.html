@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/abc.png" rel="icon">
+    <link href="../img/abc.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,15 +22,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"/>
+    <link href="../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"/>
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -81,19 +81,21 @@
     </div>
     <!-- Navbar End -->
 
-
-    <!-- Service Start -->
+    <!-- Container to display services -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h5 class="section-title ff-secondary text-center text-primary fw-normal">Our Services</h5>
                 <h1 class="mb-5">Explore Our Services</h1>
+                <!-- Search Bar -->
+                <div class="mt-4 animated slideInLeft">
+                    <input id="serviceSearch" type="text" class="form-control" placeholder="Search Services..." oninput="filterServices()" style="max-width: 400px; margin: 0 auto; padding: 12px 20px; font-size: 16px; border: 2px solid #ddd; border-radius: 25px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                </div>
             </div>
-            <div class="row g-4">
+            <div class="row g-4 service-container" style="margin-top: 10px">
             </div>
         </div>
     </div>
-    <!-- Service End -->
 
 
     <!-- Footer Start -->
@@ -159,81 +161,18 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="lib/wow/wow.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/counterup/counterup.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="lib/tempusdominus/js/moment.min.js"></script>
-<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="../lib/wow/wow.min.js"></script>
+<script src="../lib/easing/easing.min.js"></script>
+<script src="../lib/waypoints/waypoints.min.js"></script>
+<script src="../lib/counterup/counterup.min.js"></script>
+<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="../lib/tempusdominus/js/moment.min.js"></script>
+<script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-<!-- Template Javascript -->
-<script src="js/main.js"></script>
-<script>
-    // Function to fetch services and update the page
-    async function fetchServices() {
-        try {
-            // Fetch data from the API
-            const response = await fetch('http://localhost:8000/service/fetch');
-            const services = await response.json();
+<script src="../js/main.js"></script>
+<script src="../js/service.js"></script>
 
-            // Get the container for the services
-            const container = document.querySelector('.row.g-4');
-            container.innerHTML = ''; // Clear existing content
-
-            // Loop through the services and create HTML elements
-            services.forEach(service => {
-                // Create a new service item
-                const serviceElement = document.createElement('div');
-                serviceElement.classList.add('col-lg-3', 'col-sm-6', 'wow', 'fadeInUp');
-                serviceElement.setAttribute('data-wow-delay', '0.1s'); // Adjust delay based on index or other logic
-
-                const imageUrl = getImage(service.name);
-
-                serviceElement.innerHTML = `
-                  <div class="service-item rounded pt-4">
-                     <div class="p-4 text-center">
-                      <img src="${imageUrl}" alt="" class="img-fluid mb-4" style="max-width: 150px; max-height: 150px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                      <h5>${service.name}</h5>
-                     <p>${service.description}</p>
-                   </div>
-                  </div>
-                `;
-
-                // Append the new service item to the container
-                container.appendChild(serviceElement);
-            });
-        } catch (error) {
-            console.error('Error fetching services:', error);
-        }
-    }
-
-    // Helper function to determine the icon class based on service name
-    function getImage(serviceName) {
-        switch (serviceName) {
-            case 'Dine-In':
-                return 'img/dine-in.jpg';
-            case 'Private Dining':
-                return 'img/private-dine-in.jpg';
-            case 'Takeout':
-                return 'img/take-out.jpg';
-            case 'Delivery':
-                return 'img/delivery.jpg';
-            case 'Catering':
-                return 'img/catering.jpg';
-            case 'Event Hosting':
-                return 'img/event-hosting.jpg';
-            case '24/7 Customer Support':
-                return 'img/customer-support.jpg';
-            default:
-                return 'img/din-in.jpg';
-        }
-    }
-
-    // Fetch services when the page loads
-    document.addEventListener('DOMContentLoaded', fetchServices);
-</script>
 
 </body>
 
