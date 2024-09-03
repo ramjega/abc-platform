@@ -11,7 +11,7 @@ import restaurant.abc.core.service.common.Result;
 import restaurant.abc.core.service.common.StatusCode;
 import restaurant.abc.core.service.common.TxStatusCodes;
 import restaurant.abc.core.service.endpoint.auth.SecurityHolder;
-import restaurant.abc.core.service.module.ProfileService;
+import restaurant.abc.core.service.module.UserProfileService;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,11 +23,11 @@ import static restaurant.abc.core.service.common.Converter.response;
 @CrossOrigin
 public class ProfileController {
 
-    private final ProfileService service;
+    private final UserProfileService service;
     private final UserProfileRepo repo;
 
     public ProfileController(ApplicationContext context) {
-        this.service = context.getBean(ProfileService.class);
+        this.service = context.getBean(UserProfileService.class);
         this.repo = context.getBean(UserProfileRepo.class);
     }
 

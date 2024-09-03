@@ -16,10 +16,10 @@ import java.util.Optional;
 import static java.util.Objects.isNull;
 
 @Service
-public class ProfileService extends BaseResourceService<UserProfile> {
+public class UserProfileService extends BaseResourceService<UserProfile> {
     private final UserProfileRepo userRepo;
 
-    public ProfileService(ApplicationContext ctx, JpaRepository<UserProfile, Long> repo) {
+    public UserProfileService(ApplicationContext ctx, JpaRepository<UserProfile, Long> repo) {
         super(ctx, UserProfile.class, repo);
         this.userRepo = ctx.getBean(UserProfileRepo.class);
     }
@@ -45,7 +45,7 @@ public class ProfileService extends BaseResourceService<UserProfile> {
     public Result<UserProfile> complete(UserProfile value) {
 
         if (isNull(value.getRole()) || isNull(value.getName()) || isNull(value.getEmail()) || isNull(value.getAddress())) {
-            return Result.of(StatusCode.sc(TxStatusCodes.SC_VALIDATION_FAILED, "Missing required fields - type | name | email | address"));
+            return Result.of(StatusCode.sc(TxStatusCodes.SC_VALIDATION_FAILED, "Missing required fields - role | name | email | address"));
         }
 
         Optional<UserProfile> profile = userRepo.findById(SecurityHolder.getProfileId());
