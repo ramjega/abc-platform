@@ -57,9 +57,18 @@
                         <a href="index.html" class="nav-item nav-link active">Home</a>
                         <a href="menu.html" class="nav-item nav-link">Menu</a>
                         <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="booking.html" class="nav-item nav-link">Booking</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="login.html" class="nav-item nav-link">Login</a>
+                        <a href="signup.html" class="nav-item nav-link">Signup</a>
+
+                        <div class="nav-item dropdown">
+                            <a id="usernameDisplay" class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                            <ul class="dropdown-menu">
+                                <li><a id="logoutButton" class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </nav>
@@ -70,8 +79,8 @@
                         <div class="col-lg-6 text-center text-lg-start">
                             <h1 class="display-3 text-white animated slideInLeft">Savor the Moment, One Dish at a Time</h1>
                             <p class="text-white animated slideInLeft mb-4 pb-2">At ABC Restaurant, where every meal is a culinary journey, we believe that dining is more than just food—it's an experience. From the first bite to the last, we’re dedicated to delivering flavors that delight, service that warms, and memories that last. Join us, and discover the art of fine dining reimagined.</p>
-                            <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
-                            <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Place an Order</a>
+                            <a href="#reservationSection" id="bookTableButton" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
+                            <a href="#serviceSection" id="placeOrderButton" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Place an Order</a>
                         </div>
                         <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                             <img class="img-fluid" src="../img/hero.png" alt="">
@@ -84,7 +93,7 @@
         <!-- Navbar End -->
 
         <!-- Container to display services -->
-        <div class="container-xxl py-5">
+        <div id="serviceSection" class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="section-title ff-secondary text-center text-primary fw-normal">Our Services</h5>
@@ -546,10 +555,10 @@
         <!-- Menu End -->
 
         <!-- Reservation Start -->
-        <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+        <div id=reservationSection class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
             <div class="row g-0">
                 <div class="col-md-6">
-                    <div class="table">
+                    <div class="table2">
                         <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
                             <span></span>
                         </button>
@@ -559,36 +568,44 @@
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
                         <h1 class="text-white mb-4">Book A Table Online</h1>
-                        <form>
+                        <form id="reservationForm">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
                                         <label for="name">Your Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                        <input type="email" class="form-control" id="email" placeholder="Your Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                                         <label for="email">Your Email</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="tel" class="form-control" id="mobile" placeholder="Your Mobile Number">
+                                        <input type="tel" class="form-control" id="mobile" placeholder="Your Mobile Number" required>
                                         <label for="mobile">Mobile Number</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating date" id="date3" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
+                                        <input type="text" class="form-control datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" required />
                                         <label for="datetime">Date & Time</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="number" class="form-control" id="people" placeholder="No Of People" min="1" max="20">
+                                        <input type="number" class="form-control" id="people" placeholder="No Of People" min="1" max="20" required>
                                         <label for="people">No Of People</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="privateRoom">
+                                        <label class="form-check-label" for="privateRoom">
+                                            Private Room
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -602,6 +619,7 @@
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -681,7 +699,9 @@
 
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
-    <script src="/js/service.js"></script>
+    <script src="/js/functions.js"></script>
+    <script src="/js/index.js"></script>
+
 </body>
 
 </html>

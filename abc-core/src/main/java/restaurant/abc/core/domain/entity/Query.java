@@ -3,6 +3,7 @@ package restaurant.abc.core.domain.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import restaurant.abc.core.domain.type.ReservationStatus;
 import restaurant.abc.core.domain.type.ServiceType;
 
 import javax.persistence.*;
@@ -12,19 +13,16 @@ import javax.persistence.*;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Table(indexes = {
-        @Index(columnList = "name"),
 })
-public class OfferedService extends ResourceEntity {
+public class Query extends ResourceEntity {
 
     @Id
-    @GeneratedValue(generator = "service_id_generator")
+    @GeneratedValue(generator = "query_id_generator")
     protected Long id;
 
-    private String name;
+    private Long reservationId;
 
-    private String description;
+    private String query;
 
-    private String price;
-
-    private ServiceType serviceType;
+    private String response;
 }

@@ -49,8 +49,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        String[] publicEndPoints = {"/authenticate", "/profile/register", "/service/fetch"};
-        httpSecurity.csrf().disable()
+        String[] publicEndPoints = {
+                "/authenticate",
+                "/profile/register",
+                "/service/fetch",
+                "/service/fetch/{id}"
+        };
+
+        httpSecurity.cors().and()
+                .csrf().disable()
                 .authorizeRequests().antMatchers(publicEndPoints).permitAll().
                         anyRequest().authenticated().and().
                         exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()

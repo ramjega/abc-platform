@@ -1,6 +1,7 @@
 package restaurant.abc.core.domain.entity;
 
 import lombok.Data;
+import restaurant.abc.core.service.endpoint.auth.SecurityHolder;
 
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
@@ -26,11 +27,13 @@ public abstract class ResourceEntity implements Serializable {
     @PrePersist
     private void setMetaFieldsOnCreate() {
         this.createdTime = new Timestamp(System.currentTimeMillis());
+        this.createdByUserId = SecurityHolder.getProfileId();
     }
 
     @PreUpdate
     public void setMetaFieldsOnUpdate() {
         this.modifiedTime = new Timestamp(System.currentTimeMillis());
+        this.modifiedByUserId = SecurityHolder.getProfileId();
     }
 
 }

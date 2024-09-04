@@ -48,8 +48,7 @@
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Restoran</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>ABC</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
@@ -59,12 +58,20 @@
                         <a href="index.html" class="nav-item nav-link">Home</a>
                         <a href="menu.html" class="nav-item nav-link">Menu</a>
                         <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="booking.html" class="nav-item nav-link">Booking</a>
                         <a href="about.html" class="nav-item nav-link active">About</a>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="login.html" class="nav-item nav-link">Login</a>
+                        <a href="signup.html" class="nav-item nav-link">Signup</a>
+
+                        <div class="nav-item dropdown">
+                            <a id="usernameDisplay" class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                            <ul class="dropdown-menu">
+                                <li><a id="logoutButton" class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
-
             </nav>
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
@@ -209,6 +216,8 @@
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
+    <script src="../js/functions.js"></script>
+    <script src="../js/about.js"></script>
 </body>
 
 </html>

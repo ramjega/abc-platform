@@ -28,6 +28,11 @@ public class ServiceController {
         return response(Result.of(service.query()));
     }
 
+    @GetMapping(value = "/service/fetch/{id}")
+    public ResponseEntity fetchById(@PathVariable Long id) {
+        return response(Result.of(service.findById(id)));
+    }
+
     @PostMapping(value = "/service/create")
     public ResponseEntity create(@RequestBody OfferedService value) {
         return response(service.create(value));
