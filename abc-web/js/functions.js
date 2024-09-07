@@ -1,14 +1,18 @@
 function handleLocalStore() {
     const userName = localStorage.getItem('userName');
     const loginLink = document.querySelector('a[href="login.html"]');
+    const staffLoginLink = document.querySelector('a[href="staffLogin.html"]');
+    const adminLoginLink = document.querySelector('a[href="adminLogin.html"]');
     const signupLink = document.querySelector('a[href="signup.html"]');
     const usernameDisplay = document.getElementById('usernameDisplay');
 
     if (userName) {
         // User is logged in
-        if (loginLink) loginLink.style.display = 'none'; // Hide login link
-        if (signupLink) signupLink.style.display = 'none'; // Hide signup link
-        if (usernameDisplay) usernameDisplay.innerText = `${userName}`; // Display username
+        if (loginLink) loginLink.style.display = 'none';
+        if (staffLoginLink) staffLoginLink.style.display = 'none';
+        if (adminLoginLink) adminLoginLink.style.display = 'none';
+        if (signupLink) signupLink.style.display = 'none';
+        if (usernameDisplay) usernameDisplay.innerText = `${userName}`;
     } else {
         // User is not logged in
         if (loginLink) loginLink.style.display = 'block'; // Show login link

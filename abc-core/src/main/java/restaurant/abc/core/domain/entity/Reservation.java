@@ -1,8 +1,6 @@
 package restaurant.abc.core.domain.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import restaurant.abc.core.domain.type.ReservationStatus;
 import restaurant.abc.core.domain.type.ServiceType;
 
@@ -12,6 +10,8 @@ import javax.persistence.*;
 @Entity
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(indexes = {
         @Index(columnList = "status")
 })
@@ -30,4 +30,8 @@ public class Reservation extends ResourceEntity {
     private String dateTime;
 
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "customerId", referencedColumnName = "id")
+    private UserProfile customer;
 }

@@ -9,11 +9,8 @@ import restaurant.abc.core.repo.jpa.UserProfileRepo;
 import restaurant.abc.core.service.common.Result;
 import restaurant.abc.core.service.common.StatusCode;
 import restaurant.abc.core.service.common.TxStatusCodes;
-import restaurant.abc.core.service.endpoint.auth.SecurityHolder;
 
 import java.util.Optional;
-
-import static java.util.Objects.isNull;
 
 @Service
 public class UserProfileService extends BaseResourceService<UserProfile> {
@@ -42,34 +39,25 @@ public class UserProfileService extends BaseResourceService<UserProfile> {
         return super.create(value);
     }
 
-    public Result<UserProfile> complete(UserProfile value) {
-
-        if (isNull(value.getRole()) || isNull(value.getName()) || isNull(value.getEmail()) || isNull(value.getAddress())) {
-            return Result.of(StatusCode.sc(TxStatusCodes.SC_VALIDATION_FAILED, "Missing required fields - role | name | email | address"));
-        }
-
-        Optional<UserProfile> profile = userRepo.findById(SecurityHolder.getProfileId());
-
-        if (!profile.isPresent()) {
-            return Result.of(StatusCode.sc(TxStatusCodes.SC_NOT_FOUND, "Request profile not found!"));
-        }
-
-        profile.get().setRole(value.getRole());
-        profile.get().setName(value.getName());
-        profile.get().setEmail(value.getEmail());
-        profile.get().setAddress(value.getEmail());
-
-        return super.update(profile.get());
-    }
-
     @Override
     public Result<UserProfile> update(UserProfile value) {
 
-        if (value.getMobile() == null || value.getPassword() == null) {
-            return Result.of(StatusCode.sc(TxStatusCodes.SC_VALIDATION_FAILED, "Missing required fields - mobile | password"));
+        if (value.getName() == null || value.getMobile() == null || value.getEmail() == null || value.getRole() == null) {
+            return Result.of(StatusCode.sc(TxStatusCodes.SC_VALIDATION_FAILED, "Missing required fields - name | mobile | email | role"));
         }
 
-        return super.update(value);
+        Optional<UserProfile> existing = repo.findById(value.getId());
+
+        if (existing.isPresent()) {
+            existing.get().setName(value.getName());
+            existing.get().setMobile(value.getMobile());
+            existing.get().setEmail(value.getEmail());
+            existing.get().setRole(value.getRole());
+
+            return Result.of(repo.save(existing.get()));
+        } else {
+            return Result.of(StatusCode.sc(TxStatusCodes.SC_NOT_FOUND, type().getSimpleName() + " for id [" + value.getId() + "] not found"));
+        }
     }
 
     public Result<UserProfile> suspend(Long id) {

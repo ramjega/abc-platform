@@ -49,7 +49,7 @@
     <div class="container-xxl position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
             <a href="" class="navbar-brand p-0">
-                <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>ABC</h1>
+                <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>ABC Admin Portal</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
@@ -57,12 +57,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0 pe-4">
                     <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="menu.html" class="nav-item nav-link">Menu</a>
-                    <a href="service.html" class="nav-item nav-link">Service</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
                     <a href="login.html" class="nav-item nav-link active">Login</a>
-                    <a href="signup.html" class="nav-item nav-link">Signup</a>
 
                     <div class="nav-item dropdown">
                         <a id="usernameDisplay" class="nav-link dropdown-toggle active" href="#"
@@ -83,7 +78,7 @@
                     <ol class="breadcrumb justify-content-center text-uppercase">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Login</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Admin Login</li>
                     </ol>
                 </nav>
             </div>
@@ -99,13 +94,13 @@
         <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
             <div class="row g-0">
                 <div class="col-md-6">
-                    <div class="login">
+                    <div class="admin-login-banner">
                     </div>
                 </div>
                 <div class="col-md-6 bg-dark d-flex align-items-center">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">Login</h5>
-                        <h1 class="text-white mb-4">Access Your Account</h1>
+                        <h1 class="text-white mb-4">Login As Admin</h1>
                         <form id="loginForm">
                             <div class="row g-3">
                                 <div class="col-md-12">
@@ -124,9 +119,6 @@
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100 py-3" type="submit">Login</button>
-                                </div>
-                                <div class="col-12 mt-3 text-center">
-                                    <a href="signup.html" class="text-white">Don't have an account? Sign up</a>
                                 </div>
                                 <div id="errorMessage" class="col-12 mt-3 text-center text-danger"></div>
                             </div>
@@ -213,7 +205,7 @@
 <!-- Template Javascript -->
 <script src="../js/main.js"></script>
 <script src="../js/functions.js"></script>
-<script src="../js/login.js"></script>
+<script src="../js/adminLogin.js"></script>
 </body>
 
 </html>

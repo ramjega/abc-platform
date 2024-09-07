@@ -47,14 +47,14 @@ public class ProfileController {
         return response(service.create(value));
     }
 
-    @PostMapping(value = "/profile/complete")
-    public ResponseEntity complete(@RequestBody UserProfile value) {
-        return response(service.complete(value));
+    @GetMapping(value = "/profile/fetch")
+    public ResponseEntity fetch() {
+        return response(Result.of(service.query()));
     }
 
-    @PatchMapping(value = "/profile/patch/{id}")
-    public ResponseEntity update(@PathVariable Long id, @RequestBody List<ResourcePatch> patches) {
-        return response(service.patch(id, patches));
+    @PutMapping(value = "/profile/update")
+    public ResponseEntity update(@RequestBody UserProfile value) {
+        return response(service.update(value));
     }
 
     @PostMapping(value = "/profile/suspend/{id}")

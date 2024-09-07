@@ -10,5 +10,4 @@ public class RepoModule {
     public JsonSerializationCodec serializationCodec() {
         return new JsonSerializationCodec();
     }
-
 }

@@ -6,5 +6,6 @@ public enum ServiceType {
     take_out,
     delivery,
     catering,
-    event_hosting
+    event_hosting,
+    additional
 }

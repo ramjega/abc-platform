@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import restaurant.abc.core.domain.entity.Reservation;
+import restaurant.abc.core.domain.type.ReservationStatus;
 import restaurant.abc.core.repo.jpa.ReservationRepo;
 import restaurant.abc.core.service.common.ResourcePatch;
 import restaurant.abc.core.service.common.Result;
@@ -46,6 +47,11 @@ public class ReservationController {
     @PostMapping(value = "/reservation/create")
     public ResponseEntity create(@RequestBody Reservation value) {
         return response(service.create(value));
+    }
+
+    @PostMapping(value = "/reservation/move")
+    public ResponseEntity moveTo(@RequestBody Reservation value) {
+        return response(service.moveTo(value));
     }
 
     @PatchMapping(value = "/reservation/patch/{id}")
