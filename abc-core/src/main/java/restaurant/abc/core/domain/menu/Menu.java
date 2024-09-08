@@ -3,7 +3,7 @@ package restaurant.abc.core.domain.menu;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Menu extends MenuComponent {
+public class Menu implements MenuComponent {
     private List<MenuComponent> menuComponents = new ArrayList<>();
     private String name;
     private String description;
@@ -36,6 +36,16 @@ public class Menu extends MenuComponent {
     @Override
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public double getPrice() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean isVegetarian() {
+        throw new UnsupportedOperationException();
     }
 
     @Override

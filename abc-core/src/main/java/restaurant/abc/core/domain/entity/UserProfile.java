@@ -7,6 +7,8 @@ import lombok.ToString;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import restaurant.abc.core.domain.type.UserRole;
 import restaurant.abc.core.domain.type.UserProfileStatus;
+import restaurant.abc.core.service.notification.NotificationAdapter;
+import restaurant.abc.core.service.ordering.Observer;
 
 import javax.persistence.*;
 

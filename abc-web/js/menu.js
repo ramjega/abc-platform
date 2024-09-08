@@ -1,3 +1,3 @@
 window.onload = function () {
-    handleLocalStore();
+    handleLocalStore(); // to show logged in information
 };

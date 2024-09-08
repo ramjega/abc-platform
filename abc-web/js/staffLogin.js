@@ -1,17 +1,14 @@
 document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
+    event.preventDefault();
 
-    // Get input values
     const mobile = document.getElementById('mobile').value.trim();
     const password = document.getElementById('password').value.trim();
 
-    // Perform basic validation
     if (!mobile || !password) {
         document.getElementById('errorMessage').textContent = 'Both fields are required.';
         return;
     }
 
-    // Prepare request data
     const requestData = {
         mobile: mobile,
         password: password

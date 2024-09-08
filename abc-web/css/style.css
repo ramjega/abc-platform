@@ -514,3 +514,18 @@
 .reply-button i {
     color: #fff; /* Icon color */
 }
+
+.vegetarian, .non-vegetarian {
+    font-weight: bold;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+.vegetarian {
+    background-color: #4CAF50; /* Green */
+    width: 40px;
+}
+.non-vegetarian {
+    background-color: #F44336; /* Red */
+    width: 80px;
+}

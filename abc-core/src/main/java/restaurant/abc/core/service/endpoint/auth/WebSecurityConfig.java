@@ -53,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/authenticate",
                 "/profile/register",
                 "/service/fetch",
+                "/menu-item/fetch",
                 "/service/fetch/{id}"
         };
 

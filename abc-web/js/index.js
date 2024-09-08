@@ -27,7 +27,7 @@ document.querySelector('.btn-primary[href="#serviceSection"]').addEventListener(
 });
 
 document.getElementById('reservationForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the form from submitting the default way
+    event.preventDefault();
 
     // Get form data
     const name = document.getElementById('name').value.trim();
@@ -95,3 +95,48 @@ document.getElementById('placeOrderButton').addEventListener('click', function(e
         window.location.href = 'login.html'; // Redirect to the login page
     }
 });
+
+function fetchMenuItems() {
+    const token = localStorage.getItem('token');
+
+    fetch('http://localhost:8000/menu-item/fetch')
+        .then(response => response.json())
+        .then(menuItems => {
+            const container = document.getElementById('menu-container');
+            container.innerHTML = '';
+
+            menuItems.forEach(item => {
+                const vegStatus = item.vegetarian ? 'vegetarian' : 'non-vegetarian';
+                const vegText = item.vegetarian ? 'Veg' : 'Non-Veg';
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'col-lg-6';
+
+                itemDiv.innerHTML = `
+                            <div class="d-flex align-items-center">
+                               <i class="fa fa-utensils me-3"></i>
+                                <div class="w-100 d-flex flex-column text-start ps-4">
+                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                        <span>${item.name}</span>
+                                        <span class="text-primary">LKR ${item.price}</span>
+                                    </h5>
+                                    <small class="fst-italic">${item.type}</small>
+                                    <small class="fst-italic">${item.description}</small>
+                                     <span class="${vegStatus}">${vegText}</span>
+                                  
+                                </div>
+                            </div>
+                        `;
+
+                container.appendChild(itemDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching menu items:', error);
+            alert('There was an error fetching the menu items. Please try again.');
+        });
+}
+
+fetchMenuItems();
+
+fetchMenuItems();

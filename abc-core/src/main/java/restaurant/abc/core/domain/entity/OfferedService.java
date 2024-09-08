@@ -23,7 +23,9 @@ public class OfferedService extends ResourceEntity {
 
     private String description;
 
-    private double price;
+    private Double price;
+
+    private Boolean additionalService = false;
 
     private ServiceType serviceType;
 
@@ -32,6 +34,8 @@ public class OfferedService extends ResourceEntity {
         this.name = builder.name;
         this.serviceType = builder.serviceType;
         this.description = builder.description;
+        this.additionalService = builder.additionalService;
+        this.price = builder.price;
     }
 
     // Builder Class
@@ -39,6 +43,8 @@ public class OfferedService extends ResourceEntity {
         private String name;
         private ServiceType serviceType;
         private String description;
+        private boolean additionalService;
+        private double price;
 
         public Builder setName(String name) {
             this.name = name;
@@ -52,6 +58,16 @@ public class OfferedService extends ResourceEntity {
 
         public Builder setDescription(String description) {
             this.description = description;
+            return this;
+        }
+
+        public Builder markAsAdditional() {
+            this.additionalService = true;
+            return this;
+        }
+
+        public Builder setPrice(double price) {
+            this.price = price;
             return this;
         }
 

@@ -1,5 +1,5 @@
 document.getElementById('userForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
 
     // Collect form data
     const userName = document.getElementById('userName').value;
@@ -56,13 +56,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const userTableBody = document.getElementById('userTableBody');
             userTableBody.innerHTML = '';
 
-            // Check if users array is not empty
             if (users.length > 0) {
-                // Iterate over each user and add a row to the table
                 users.forEach(user => {
                     const row = document.createElement('tr');
 
-                    // Create table cells for each user property
                     row.innerHTML = `
                         <td class="text-white">${user.id || 'N/A'}</td>
                         <td class="text-white">${capitalizeFirstLetter(user.role || 'N/A')}</td>
@@ -92,12 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
-// Helper function to capitalize the first letter of a string
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
-// Placeholder functions for edit and delete actions
 function editUser(userId) {
     alert(`Edit user with ID: ${userId}`);
 }
@@ -105,4 +100,3 @@ function editUser(userId) {
 function deleteUser(userId) {
     alert(`Delete user with ID: ${userId}`);
 }
-

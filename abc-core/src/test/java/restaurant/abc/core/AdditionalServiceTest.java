@@ -13,24 +13,27 @@ public class AdditionalServiceTest {
                 .setName("Basic Dining Service")
                 .setDescription("Standard dining experience")
                 .setServiceType(ServiceType.dine_in)
+                .setPrice(2000)
+                .markAsAdditional()
                 .build();
-        basicService.setPrice(2000);
 
         // Additional service live music selected
         OfferedService liveMusicService = new OfferedService.Builder()
                 .setName("Live Music")
                 .setDescription("Enjoy live music")
                 .setServiceType(ServiceType.additional)
+                .setPrice(1500)
+                .markAsAdditional()
                 .build();
-        liveMusicService.setPrice(1500);
 
         // Additional service table decoration selected
         OfferedService tableDecorationService = new OfferedService.Builder()
                 .setName("Table Decoration")
                 .setDescription("Beautiful table decorations")
                 .setServiceType(ServiceType.additional)
+                .setPrice(500)
+                .markAsAdditional()
                 .build();
-        tableDecorationService.setPrice(500);
 
         // Start with the basic service
         AddedService service = new BasicService(basicService);

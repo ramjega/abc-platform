@@ -4,12 +4,10 @@ window.onload = function () {
 
 };
 
-// Function to fetch and reservations
+// Function to fetch all reservations
 function fetchAndDisplayAllReservations() {
     const tableBody = document.getElementById('reservationTableBody');
 
-
-    // Fetch the reservations from the API
     fetch('http://localhost:8000/reservation/fetch', {
         method: 'GET',
         headers: {
@@ -19,10 +17,8 @@ function fetchAndDisplayAllReservations() {
     })
         .then(response => response.json())
         .then(data => {
-            // Clear existing rows
             tableBody.innerHTML = '';
 
-            // Add each reservation as a new row in the table
             data.forEach(reservation => {
                 const row = document.createElement('tr');
 

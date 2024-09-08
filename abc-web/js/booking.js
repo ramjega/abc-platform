@@ -33,7 +33,7 @@ function fetchServiceDetails(serviceID) {
 }
 
 document.getElementById('reservationForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the form from submitting the default way
+    event.preventDefault();
 
     // Get form data
     const name = document.getElementById('name').value.trim();
@@ -57,7 +57,6 @@ document.getElementById('reservationForm').addEventListener('submit', function (
         return;
     }
 
-    // Prepare data for POST request
     const reservationData = {
         description: message,
         participants: parseInt(people, 10),
@@ -85,7 +84,6 @@ document.getElementById('reservationForm').addEventListener('submit', function (
         });
 });
 
-// Function to fetch and reservations
 function fetchAndDisplayReservations() {
     const tableBody = document.getElementById('bookingTableBody');
 

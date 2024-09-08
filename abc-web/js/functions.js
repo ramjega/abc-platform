@@ -1,3 +1,6 @@
+// Common functions which are used in multiple pages
+
+// deals with the local store and show menu conditionally
 function handleLocalStore() {
     const userName = localStorage.getItem('userName');
     const loginLink = document.querySelector('a[href="login.html"]');
@@ -21,6 +24,7 @@ function handleLocalStore() {
     }
 }
 
+// removes the saved information during logout
 function logoutUser() {
     // Remove the user's data from local storage
     localStorage.removeItem('userName');
@@ -30,6 +34,7 @@ function logoutUser() {
     window.location.href = 'index.html';
 }
 
+// search services
 function filterServices() {
     const searchTerm = document.getElementById('serviceSearch').value.toLowerCase();
     const filteredServices = allServices.filter(service => service.name.toLowerCase().includes(searchTerm));
@@ -67,6 +72,7 @@ function displayServices(services) {
 
 }
 
+// Dynamically change images based on the service type
 function getImage(serviceName) {
     switch (serviceName) {
         case 'Dine-In':
@@ -88,6 +94,7 @@ function getImage(serviceName) {
     }
 }
 
+// check if the user is logged in
 function isLoggedIn() {
     return !!localStorage.getItem('userName');
 }

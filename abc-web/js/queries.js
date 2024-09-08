@@ -12,9 +12,7 @@ window.onload = function () {
     const {reservationId} = getQueryParams();
 
     if (reservationId) {
-        // Fetch reservation details
         displayReservationDetails(reservationId);
-        // Fetch and display queries on initial page load
         fetchAndDisplayQueries(reservationId);
     } else {
         console.error('No reservationId found in query parameters');

@@ -1,35 +1,24 @@
 package restaurant.abc.core.domain.menu;
 
-public abstract class MenuComponent {
-    public void add(MenuComponent menuComponent) {
-        throw new UnsupportedOperationException();
-    }
+public interface MenuComponent {
+     void add(MenuComponent menuComponent) ;
 
-    public void remove(MenuComponent menuComponent) {
-        throw new UnsupportedOperationException();
-    }
+     void remove(MenuComponent menuComponent) ;
 
-    public MenuComponent getChild(int i) {
-        throw new UnsupportedOperationException();
-    }
+     MenuComponent getChild(int i) ;
 
-    public String getName() {
-        throw new UnsupportedOperationException();
-    }
+     String getName() ;
 
-    public String getDescription() {
-        throw new UnsupportedOperationException();
-    }
+     String getDescription() ;
 
-    public double getPrice() {
-        throw new UnsupportedOperationException();
-    }
+     double getPrice() ;
 
-    public boolean isVegetarian() {
-        throw new UnsupportedOperationException();
-    }
+     boolean isVegetarian() ;
 
-    public void print() {
-        throw new UnsupportedOperationException();
-    }
+     void print() ;
 }
+
+
+
+
+

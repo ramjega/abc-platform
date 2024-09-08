@@ -1,5 +1,7 @@
 package restaurant.abc.core.service.notification;
 
+import org.springframework.stereotype.Service;
+
 public class TwilioAdapter implements NotificationAdapter {
 
     private TwilioService twilioService;

@@ -13,7 +13,13 @@ import restaurant.abc.core.service.command.CancelReservationRequest;
 import restaurant.abc.core.service.command.CreateReservationRequest;
 import restaurant.abc.core.service.command.ReservationInvoker;
 import restaurant.abc.core.service.command.ReservationRequest;
+import restaurant.abc.core.service.common.Result;
 import restaurant.abc.core.service.module.ReservationService;
+
+import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -23,7 +29,39 @@ public class ReservationTest {
     ReservationService reservationService;
 
     @Test
-    public void profileCreateTest() {
+    public void reservationCreateTest() {
+
+        Reservation reservation = new Reservation();
+        reservation.setCustomer(UserProfile.SYSTEM);
+        reservation.setParticipants(4);
+        reservation.setServiceType(ServiceType.dine_in);
+        reservation.setDateTime("09/10/2024");
+
+        Result<Reservation> reservationResult = reservationService.create(reservation);
+        assertTrue(reservationResult.code().isSuccess());
+    }
+
+    @Test
+    public void reservationCancelTest() {
+
+        Reservation reservation = new Reservation();
+        reservation.setCustomer(UserProfile.SYSTEM);
+        reservation.setServiceType(ServiceType.take_out);
+        reservation.setDateTime("09/10/2024");
+
+        Result<Reservation> reservationResult = reservationService.create(reservation);
+        assertTrue(reservationResult.code().isSuccess());
+
+        Result<Reservation> cancelResult = reservationService.cancel(reservation);
+        assertTrue(cancelResult.code().isSuccess());
+
+        Optional<Reservation> reservationFound = reservationService.findById(reservationResult.value().getId());
+        assertTrue(reservationFound.isPresent());
+        assertEquals(ReservationStatus.cancelled, reservationFound.get().getStatus());
+    }
+
+    @Test
+    public void reservationCommandTest() {
 
         // Reservation to create and cancel
         Reservation reservation1 = new Reservation(1L, 2, ServiceType.dine_in, ReservationStatus.initial, "2024-09-10", "", UserProfile.SYSTEM);

@@ -24,7 +24,7 @@ public class Order implements Subject {
     @Override
     public void notifyObservers() {
         for (Observer observer : observers) {
-            observer.update(orderStatus);
+            observer.notify(orderStatus);
         }
     }
 
