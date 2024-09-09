@@ -40,14 +40,14 @@ public class MenuItemController {
         return response(service.create(value));
     }
 
+    @PutMapping(value = "/menu-item/update")
+    public ResponseEntity update(@RequestBody MenuItem value) {
+        return response(service.update(value));
+    }
+
     @DeleteMapping(value = "/menu-item/remove/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         return response(service.delete(id));
-    }
-
-    @PatchMapping(value = "/menu-item/patch/{id}")
-    public ResponseEntity update(@PathVariable Long id, @RequestBody List<ResourcePatch> patches) {
-        return response(service.patch(id, patches));
     }
 
 }

@@ -69,11 +69,6 @@ public class ProfileController {
 
     @DeleteMapping(value = "/profile/delete/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
-        Result<UserProfile> result = service.delete(id);
-        if (result.code().isSuccess()) {
-            return response(Result.of("Deleted Successfully"));
-        } else {
-            return response(result);
-        }
+        return response(Result.of(service.delete(id)));
     }
 }

@@ -38,9 +38,13 @@ public class ServiceController {
         return response(service.create(value));
     }
 
-    @PatchMapping(value = "/service/patch/{id}")
-    public ResponseEntity update(@PathVariable Long id, @RequestBody List<ResourcePatch> patches) {
-        return response(service.patch(id, patches));
+    @PutMapping(value = "/service/update")
+    public ResponseEntity update(@RequestBody OfferedService value) {
+        return response(service.update(value));
     }
 
+    @DeleteMapping(value = "/service/remove/{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        return response(Result.of(service.delete(id)));
+    }
 }

@@ -1,102 +1,52 @@
-document.getElementById('userForm').addEventListener('submit', function (event) {
+document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    // Collect form data
-    const userName = document.getElementById('userName').value;
-    const userEmail = document.getElementById('userEmail').value;
-    const userMobile = document.getElementById('userMobile').value;
-    const userRole = document.getElementById('userRole').value;
-    const password = document.getElementById('password').value;
+    const mobile = document.getElementById('mobile').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-    // Prepare request payload
+    // Perform basic validation
+    if (!mobile || !password) {
+        document.getElementById('errorMessage').textContent = 'Both fields are required.';
+        return;
+    }
+
     const requestData = {
-        name: userName,
-        mobile: userMobile,
-        email: userEmail,
-        role: userRole,
+        mobile: mobile,
         password: password
     };
 
-    // Make a POST request to the API
-    fetch('http://localhost:8000/profile/register', {
+    // Send login request
+    fetch('http://localhost:8000/authenticate', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestData)
     })
         .then(response => response.json())
         .then(data => {
-            if (data.id) {
-                // Handle success (e.g., show a success message or redirect)
-                alert('User created successfully!');
+            if (data.token) {
+                // Check if the user is a admin member
+                if (data.role === 'admin') {
+                    localStorage.setItem('userName', data.name);
+                    localStorage.setItem('mobile', data.mobile);
+                    localStorage.setItem('email', data.email);
+                    localStorage.setItem('token', data.token);
+
+                    window.location.href = 'manageUsers.html';
+                } else {
+                    document.getElementById('errorMessage').textContent = 'Login failed. You are not authorized as a admin  member.';
+                }
             } else {
-                // Handle failure (e.g., show an error message)
-                alert('Failed to create user: ' + data.message);
+                document.getElementById('errorMessage').textContent = data.error || 'Login failed. Please try again.';
             }
         })
         .catch(error => {
+            document.getElementById('errorMessage').textContent = 'An error occurred. Please try again.';
             console.error('Error:', error);
-            alert('An error occurred while creating the user.');
         });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Fetch user data when the page loads
-    fetch('http://localhost:8000/profile/fetch', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-    })
-        .then(response => response.json())
-        .then(users => {
-            const userTableBody = document.getElementById('userTableBody');
-            userTableBody.innerHTML = '';
-
-            if (users.length > 0) {
-                users.forEach(user => {
-                    const row = document.createElement('tr');
-
-                    row.innerHTML = `
-                        <td class="text-white">${user.id || 'N/A'}</td>
-                        <td class="text-white">${capitalizeFirstLetter(user.role || 'N/A')}</td>
-                        <td class="text-white">${user.name || 'N/A'}</td>
-                        <td class="text-white">${user.email || 'N/A'}</td>
-                        <td class="text-white">${user.mobile || 'N/A'}</td>
-                        <td class="text-white">${capitalizeFirstLetter(user.status || 'N/A')}</td>
-                        <td class="text-white">
-                            <button class="btn btn-sm btn-primary" onclick="editUser(${user.id})">Edit</button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteUser(${user.id})">Delete</button>
-                        </td>
-                    `;
-                    userTableBody.appendChild(row);
-                });
-            } else {
-                const row = document.createElement('tr');
-                row.innerHTML = `<td colspan="7" class="text-white text-center">No users found</td>`;
-                userTableBody.appendChild(row);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching users:', error);
-            const userTableBody = document.getElementById('userTableBody');
-            const row = document.createElement('tr');
-            row.innerHTML = `<td colspan="7" class="text-white text-center">Error fetching user data</td>`;
-            userTableBody.appendChild(row);
-        });
-});
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-}
-
-function editUser(userId) {
-    alert(`Edit user with ID: ${userId}`);
-}
-
-function deleteUser(userId) {
-    alert(`Delete user with ID: ${userId}`);
-}
+window.onload = function () {
+    handleLocalStore()
+};

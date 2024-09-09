@@ -529,3 +529,21 @@
     background-color: #F44336; /* Red */
     width: 80px;
 }
+
+.new-service-row {
+    background-color: #343a40; /* Darker background */
+    font-style: italic; /* Italic text */
+    color: #f8f9fa; /* Light text */
+    border-top: 2px solid #ffffff; /* Top border to differentiate */
+}
+
+.new-service-row input, .new-service-row select {
+    background-color: #495057; /* Dark input fields */
+    color: #ffffff; /* White text in input */
+    border-color: #ced4da; /* Lighter border color */
+}
+
+.new-service-row i.fas.fa-save {
+    font-size: 1.2rem; /* Slightly larger save icon */
+    color: #28a745; /* Green save icon */
+}
