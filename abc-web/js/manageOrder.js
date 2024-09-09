@@ -68,7 +68,7 @@ function getStatusButtons(status, reservationId) {
 
     if (status === 'initial') {
         buttons = `
-            <button class="btn btn-warning btn-sm" onclick="changeStatus(${reservationId}, 'in_progress')">Start</button>
+            <button class="btn btn-warning btn-sm" onclick="changeStatus(${reservationId}, 'in_progress')">Confirm</button>
             <button class="btn btn-danger btn-sm mt-1" onclick="changeStatus(${reservationId}, 'cancelled')">Cancel</button>
         `;
     } else if (status === 'in_progress') {

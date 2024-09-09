@@ -143,15 +143,15 @@ function createService() {
         .then(response => response.json())
         .then(data => {
             if (data) {
-                alert('Service created successfully!');
+                showAlert('Service created successfully!', 'success');
                 renderNewService(data);
             } else {
-                alert('Failed to create the service');
+                showAlert('Failed to create the service', 'danger');
             }
         })
         .catch(error => {
             console.error('Error creating service:', error);
-            alert('Failed to create the service');
+            showAlert('Failed to create the service', 'danger');
         });
 }
 
@@ -224,9 +224,9 @@ function updateService(id, button) {
         .then(response => response.json())
         .then(data => {
             if (data) {
-                alert('Service updated successfully!');
+                showAlert('Service updated successfully!', 'success');
             } else {
-                alert('Failed to update the service');
+                showAlert('Failed to update the service', 'danger');
             }
         })
         .catch(error => {
@@ -236,26 +236,40 @@ function updateService(id, button) {
 }
 
 function deleteService(serviceId) {
-    fetch(`http://localhost:8000/service/remove/${serviceId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data) {
-                alert('Service deleted successfully!');
-                document.querySelector(`tr[data-id="${serviceId}"]`).remove();
-            } else {
-                alert('Failed to delete the service');
+    const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+    confirmationModal.show();
+
+    document.getElementById('confirmDeleteButton').onclick = function() {
+        fetch(`http://localhost:8000/service/remove/${serviceId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
-        .catch(error => {
-            console.error('Error deleting service:', error);
-            alert('Failed to delete the service');
-        });
+            .then(response => {
+                if (response.ok) {
+                    showAlert('Service deleted successfully!', 'success');
+                    document.querySelector(`tr[data-id="${serviceId}"]`).remove();
+                } else {
+                    showAlert('Failed to delete the service', 'danger');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting service:', error);
+                showAlert('Failed to delete the service', 'danger');
+            });
+
+        // Close the confirmation modal
+        confirmationModal.hide();
+    }
+}
+
+function showAlert(message, type = 'success') {
+    const alertModalBody = document.getElementById('alertModalBody');
+    alertModalBody.textContent = message;
+    const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
+    alertModal.show();
 }
 
 window.onload = function () {

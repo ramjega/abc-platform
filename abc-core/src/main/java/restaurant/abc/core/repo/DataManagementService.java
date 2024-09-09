@@ -40,7 +40,7 @@ public class DataManagementService {
 
         SecurityHolder.setProfile(UserProfile.SYSTEM);
 
-//        serviceRepo.deleteAll();
+        serviceRepo.deleteAll();
 //        reservationRepo.deleteAll();
 //        menuItemRepo.deleteAll();
 //        queryRepo.deleteAll();

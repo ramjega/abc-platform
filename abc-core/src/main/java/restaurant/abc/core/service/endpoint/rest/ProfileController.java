@@ -67,7 +67,7 @@ public class ProfileController {
         return response(service.activate(id));
     }
 
-    @DeleteMapping(value = "/profile/delete/{id}")
+    @DeleteMapping(value = "/profile/remove/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         return response(Result.of(service.delete(id)));
     }

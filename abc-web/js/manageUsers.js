@@ -140,10 +140,11 @@ function createUser() {
         .then(response => response.json())
         .then(data => {
             if (data.id) {
-                alert('User created successfully!');
+                showAlert('User created successfully!', 'success');
                 renderNewUser(data);
             } else {
-                alert('Failed to create user: ' + data.error);
+                showAlert('Failed to create user: ' + data.error, 'danger');
+                alert();
             }
         })
         .catch(error => {
@@ -221,9 +222,9 @@ function updateUser(id, button) {
         .then(response => response.json())
         .then(data => {
             if (data) {
-                alert('User updated successfully!');
+                showAlert('User updated successfully!', 'success');
             } else {
-                alert('Failed to update user: ' + data.message);
+                showAlert('Failed to update user: ' + data.message, 'danger');
             }
         })
         .catch(error => {
@@ -233,26 +234,41 @@ function updateUser(id, button) {
 }
 
 function deleteUser(userId) {
-    fetch(`http://localhost:8000/profile/delete/${userId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data) {
-                alert('User deleted successfully!');
-                document.querySelector(`tr[data-id="${userId}"]`).remove();
-            } else {
-                alert('Failed to delete user: ' + data.message);
+    const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+    confirmationModal.show();
+
+    document.getElementById('confirmDeleteButton').onclick = function() {
+        fetch(`http://localhost:8000/profile/remove/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
-        .catch(error => {
-            console.error('Error deleting user:', error);
-            alert('Failed to delete user');
-        });
+            .then(response => {
+                if (response.ok) {
+                    showAlert('User deleted successfully!', 'success');
+                    document.querySelector(`tr[data-id="${userId}"]`).remove();
+                } else {
+                    showAlert('Failed to delete the user', 'danger');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting user:', error);
+                showAlert('Failed to delete the user', 'danger');
+            });
+
+        // Close the confirmation modal
+        confirmationModal.hide();
+    }
+
+}
+
+function showAlert(message, type = 'success') {
+    const alertModalBody = document.getElementById('alertModalBody');
+    alertModalBody.textContent = message;
+    const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
+    alertModal.show();
 }
 
 function capitalizeFirstLetter(string) {
