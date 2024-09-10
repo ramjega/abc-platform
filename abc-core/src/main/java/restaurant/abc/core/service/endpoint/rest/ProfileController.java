@@ -57,14 +57,14 @@ public class ProfileController {
         return response(service.update(value));
     }
 
-    @PostMapping(value = "/profile/suspend/{id}")
-    public ResponseEntity suspend(@PathVariable Long id) {
-        return response(service.suspend(id));
-    }
-
     @PostMapping(value = "/profile/activate/{id}")
     public ResponseEntity activate(@PathVariable Long id) {
         return response(service.activate(id));
+    }
+
+    @PostMapping(value = "/profile/suspend/{id}")
+    public ResponseEntity suspend(@PathVariable Long id) {
+        return response(service.suspend(id));
     }
 
     @DeleteMapping(value = "/profile/remove/{id}")

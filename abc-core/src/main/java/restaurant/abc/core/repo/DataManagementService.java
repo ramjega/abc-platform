@@ -40,11 +40,6 @@ public class DataManagementService {
 
         SecurityHolder.setProfile(UserProfile.SYSTEM);
 
-        serviceRepo.deleteAll();
-//        reservationRepo.deleteAll();
-//        menuItemRepo.deleteAll();
-//        queryRepo.deleteAll();
-
         if (profileRepo.count() == 0) {
             log.debug("Creating initial users..");
 
