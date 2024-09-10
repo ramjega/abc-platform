@@ -24,8 +24,8 @@ public class UserProfileService extends BaseResourceService<UserProfile> {
     @Override
     public Result<UserProfile> create(UserProfile value) {
 
-        if (value.getMobile() == null || value.getPassword() == null) {
-            return Result.of(StatusCode.sc(TxStatusCodes.SC_VALIDATION_FAILED, "Missing required fields - mobile | password"));
+        if (value.getRole() == null || value.getName() == null || value.getMobile() == null || value.getPassword() == null) {
+            return Result.of(StatusCode.sc(TxStatusCodes.SC_VALIDATION_FAILED, "Missing required fields - role | name | mobile | password"));
         }
 
         if (!value.getMobile().startsWith("0") || value.getMobile().length() != 10) {

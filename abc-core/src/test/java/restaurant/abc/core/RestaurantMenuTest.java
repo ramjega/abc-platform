@@ -25,10 +25,10 @@ import static org.junit.Assert.assertTrue;
 public class RestaurantMenuTest {
 
     @Autowired
-    MenuItemRepo repo;
+    private MenuItemRepo repo;
 
     @Autowired
-    MenuItemService menuItemService;
+    private MenuItemService menuItemService;
 
     @Test
     public void menuItemCreateTest() {

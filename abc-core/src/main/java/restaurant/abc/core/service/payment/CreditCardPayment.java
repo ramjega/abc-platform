@@ -2,17 +2,17 @@ package restaurant.abc.core.service.payment;
 
 public class CreditCardPayment implements PaymentMethod {
     private String cardNumber;
-    private String cardHolderName;
+    private String name;
     private String expiryDate;
 
-    public CreditCardPayment(String cardNumber, String cardHolderName, String expiryDate) {
+    public CreditCardPayment(String cardNumber, String name, String expiryDate) {
         this.cardNumber = cardNumber;
-        this.cardHolderName = cardHolderName;
+        this.name = name;
         this.expiryDate = expiryDate;
     }
 
     @Override
-    public void processPayment(double amount) {
-        System.out.println("Paid " + amount + " using Credit Card: " + cardNumber);
+    public String processPayment(double amount) {
+        return "Payment processed with Credit Card";
     }
 }

@@ -1,14 +1,14 @@
 package restaurant.abc.core.service.payment;
 
 public class GiftVoucherPayment implements PaymentMethod {
-    private String voucherId;
+    private String voucherCode;
 
-    public GiftVoucherPayment(String walletId) {
-        this.voucherId = walletId;
+    public GiftVoucherPayment(String voucherCode) {
+        this.voucherCode = voucherCode;
     }
 
     @Override
-    public void processPayment(double amount) {
-        System.out.println("Paid " + amount + " using Digital Wallet: " + voucherId);
+    public String processPayment(double amount) {
+        return "Payment processed with Gift Voucher";
     }
 }
