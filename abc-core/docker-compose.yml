@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  app:
+    image: 'ramjega/abc-core'
+    network_mode: "host"
+    build:
+      context: .
+    container_name: abc-core
+    depends_on:
+    - db
+    environment:
+    - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/abc
+    - SPRING_DATASOURCE_USERNAME=abc
+    - SPRING_DATASOURCE_PASSWORD=abc@123
+    - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+    - "8000:8000"
+
+  db:
+    image: 'postgres:13.1-alpine'
+    network_mode: "host"
+    container_name: abc-db
+    environment:
+    - POSTGRES_USER=abc
+    - POSTGRES_PASSWORD=abc@123
+    ports:
+    - "5432:5432"
